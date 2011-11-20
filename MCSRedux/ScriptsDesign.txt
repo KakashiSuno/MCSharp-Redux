@@ -1,0 +1,14 @@
+﻿BOT SCRIPT: Quote
+TYPE: Command
+
+S_ARRAY: quotes
+
+FUNCTION: Init
+{
+	quotes = LoadFile("quotes.txt")
+}
+
+FUNCTION: Use
+{
+	Chat(quotes[Random(quotes.length)])
+}

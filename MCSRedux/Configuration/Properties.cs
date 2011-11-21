@@ -8,11 +8,11 @@ namespace MCSRedux
     public static class Properties
     {
         // MCSR Properties 
+        public const byte version = 22;
         public static string configfile = "server.properties";
         public static string errorlog = "server.log";
         public static int errorlevel = 3;
         public static bool gui = false;
-
 
         // General Properties
         public static string motd = "A Minecraft Server";

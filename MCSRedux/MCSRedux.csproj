@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -84,6 +84,22 @@
     <Compile Include="Commands\CmdOp.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Packets\PacketID.cs" />
+    <Compile Include="Packets\General\KeepAlive.cs" />
+    <Compile Include="Packets\General\LoginRequest.cs" />
+    <Compile Include="Packets\General\Handshake.cs" />
+    <Compile Include="Packets\General\ChatMessage.cs" />
+    <Compile Include="Packets\General\TimeUpdate.cs" />
+    <Compile Include="Packets\Entities\EntityEquipment.cs" />
+    <Compile Include="Packets\Entities\SpawnPosition.cs" />
+    <Compile Include="Packets\Entities\UseEntity.cs" />
+    <Compile Include="Packets\Packet.cs" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Packets\General\" />
+    <Folder Include="Packets\Entities\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="NOTES.txt" />
+  </ItemGroup>
 </Project>

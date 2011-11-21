@@ -1,0 +1,8 @@
+
+Linux Stuff:
+	Binaries will install to /usr/share/MCSRedux/
+	Runtime files will be in ~/.mcsredux/
+	Optional Daemon for Ubuntu/Debian in /etc/init.d/
+	
+Socket based control API for Control Panels such as CNAS
+Config reloading during runtime where possible

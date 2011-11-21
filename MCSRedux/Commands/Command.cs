@@ -27,5 +27,7 @@ namespace MCSRedux.Commands
 {
     public class Command
     {
+        public string Command;
+        public int CommandLength;
     }
 }

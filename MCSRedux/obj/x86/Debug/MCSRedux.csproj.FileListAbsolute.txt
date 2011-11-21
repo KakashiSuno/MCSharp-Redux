@@ -1,0 +1,5 @@
+C:\Users\clone1018\Dropbox\Projects\MCSharp-Redux\MCSRedux\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\clone1018\Dropbox\Projects\MCSharp-Redux\MCSRedux\bin\Debug\MCSRedux.exe
+C:\Users\clone1018\Dropbox\Projects\MCSharp-Redux\MCSRedux\bin\Debug\MCSRedux.pdb
+C:\Users\clone1018\Dropbox\Projects\MCSharp-Redux\MCSRedux\obj\x86\Debug\MCSRedux.exe
+C:\Users\clone1018\Dropbox\Projects\MCSharp-Redux\MCSRedux\obj\x86\Debug\MCSRedux.pdb

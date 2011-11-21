@@ -58,7 +58,7 @@ namespace Packets
 		EntityRelativeMove = 0x1F,
 		EntityLook = 0x20,
 		EntityLookAndRelativeMove = 0x21,
-		EntityTeleport = 0x22
+		EntityTeleport = 0x22,
 		EntityStatus = 0x26,
 		AttachEntity = 0x27,
 		EntityMetadata = 0x28,
@@ -69,8 +69,8 @@ namespace Packets
 		MapChunk = 0x33,
 		MultiBlockChange = 0x35,
 		BlockAction = 0x36,
-		Explosion = 0x3C
-		SoundOrParticleEffect = 0x3D
+		Explosion = 0x3C,
+		SoundOrParticleEffect = 0x3D,
 		NewOrInvalidState = 0x46,
 		Thunderbolt = 0x47,
 		OpenWindow = 0x64,

@@ -72,4 +72,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="Server.cs" />
+    <Compile Include="MCSR.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="Configuration\Properties.cs" />
+    <Compile Include="Commands\CmdOp.cs" />
+    <Compile Include="Commands\Command.cs" />
+  </ItemGroup>
 </Project>

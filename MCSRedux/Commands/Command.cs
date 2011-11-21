@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MCSRedux.Commands
 {
-    class Command
+    public class Command
     {
     }
 }

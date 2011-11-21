@@ -27,5 +27,23 @@ namespace MCSRedux.Commands
 {
     public class CmdOp : Command
     {
+        public override string name { get { return "op"; } }
+
+        /// <summary>
+        /// What /op does if executed
+        /// </summary>
+        public override void Use()
+        {
+
+        }
+
+        /// <summary>
+        /// If /op is submitted without any args return this
+        /// Also if /help op is selected
+        /// </summary>
+        public override void Help()
+        {
+
+        }
     }
 }

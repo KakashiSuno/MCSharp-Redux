@@ -25,9 +25,13 @@ using System.Text;
 
 namespace MCSRedux.Commands
 {
-    public class Command
+    public abstract class Command
     {
-        public string Command;
+        public abstract string name { get; }
         public int CommandLength;
+
+        public abstract void Use();
+        public abstract void Help();
     }
+
 }

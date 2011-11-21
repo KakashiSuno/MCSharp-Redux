@@ -73,6 +73,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\Player.cs" />
     <Compile Include="Materials\Materials.cs" />
     <Compile Include="Server.cs" />
     <Compile Include="MCSR.cs" />

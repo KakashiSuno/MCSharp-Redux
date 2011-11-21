@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MCSRedux.Entities
 {
-    class Player
+    class Player : Entity
     {
     }
 }

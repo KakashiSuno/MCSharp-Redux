@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -73,6 +73,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Compile Include="Block\Materials.cs" />
     <Compile Include="Server.cs" />
     <Compile Include="MCSR.cs" />
     <Compile Include="Logger.cs" />
@@ -81,7 +82,5 @@
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Packets\PacketID.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Packets\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

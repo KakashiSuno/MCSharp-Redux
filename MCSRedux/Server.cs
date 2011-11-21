@@ -45,7 +45,7 @@ namespace MCSRedux
 			{
 				if(listen.Pending())
 				{
-					TcpClient cl = listen.AcceptTcpClient();
+                    TcpClient cl = listen.AcceptTcpClient();
 				}
 				Thread.Sleep(100);
 			}

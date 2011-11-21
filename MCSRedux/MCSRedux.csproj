@@ -79,5 +79,9 @@
     <Compile Include="Configuration\Properties.cs" />
     <Compile Include="Commands\CmdOp.cs" />
     <Compile Include="Commands\Command.cs" />
+    <Compile Include="Packets\PacketID.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Packets\" />
   </ItemGroup>
 </Project>

@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 namespace MCSRedux
 {
@@ -31,7 +32,7 @@ namespace MCSRedux
         public const byte version = 22;
         public static string configfile = "server.properties";
         public static string errorlog = "server.log";
-        public static int errorlevel = 3;
+        public static int loglevel = 3;
         public static bool gui = false;
 
         // General Properties
@@ -55,7 +56,40 @@ namespace MCSRedux
         public static string levelname = "world";
         public static string levelseed = "";
         public static bool spawnanimals = false;
+        public static bool spawnmonsters = false;
         public static bool allownether = true;
 
+        public static void generate()
+        {
+            StreamWriter config = new StreamWriter(File.Create(configfile));
+
+            config.WriteLine("# MCSR Default Configuration File");
+            config.WriteLine();
+            config.WriteLine("# General Settings");
+            config.WriteLine("allow-flight=" + allowflight.ToString().ToLower());
+            config.WriteLine("difficulty=" + difficulty);
+            config.WriteLine("gamemode=" + gamemode);
+            config.WriteLine("max-players=" + maxplayers);
+            config.WriteLine("motd=" + motd);
+            config.WriteLine("pvp=" + pvp.ToString().ToLower());
+            config.WriteLine("view-distance=" + viewdistance);
+            config.WriteLine("white-list=" + whitelist.ToString().ToLower());
+            config.WriteLine();
+            config.WriteLine("# Network Settings");
+            config.WriteLine("enable-query=" + enablequery.ToString().ToLower());
+            config.WriteLine("enable-rcon=" + enablercon.ToString().ToLower());
+            config.WriteLine("online-mode=" + onlinemode.ToString().ToLower());
+            config.WriteLine("server-ip=" + serverip);
+            config.WriteLine("server-port=" + serverport);
+            config.WriteLine();
+            config.WriteLine("# World Settings");
+            config.WriteLine("allow-nether=" + allownether.ToString().ToLower());
+            config.WriteLine("level-name=" + levelname);
+            config.WriteLine("level-seed=" + levelseed);
+            config.WriteLine("spawn-animals=" + spawnanimals.ToString().ToLower());
+            config.WriteLine("spawn-monsters=" + spawnmonsters.ToString().ToLower());           
+
+            config.Close();
+        }
     }
 }

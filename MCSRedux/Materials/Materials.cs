@@ -22,7 +22,7 @@ using System;
 
 namespace MCSRedux.Materials
 {
-    public enum Block
+    public enum Block : byte
     {
         AIR = 0,
         STONE = 1,
@@ -147,8 +147,81 @@ namespace MCSRedux.Materials
         ENTER_PORTAL_FRAME = 120,
         WHITESTONE = 121
     }
-    public enum Items
+    public enum Items : short
     {
 
     }
+    public enum Record : short
+    {
+        Thirteen = 2256, Cat, Blocks, Chirp, Far, Mall, Mellohi, Stal, Strad, Ward, Eleven
+    }
+
+    public static class Metadata
+    {
+
+        public enum Wood : byte
+        {
+            Normal, Redwood, Birch
+        }
+        public enum Liquid : byte
+        {
+            Full = 0, LavaMax = 3, WaterMax = 7, Falling = 8
+        }
+        public enum Wool : byte
+        {
+            White, Orange, Magenta, LightBlue, Yellow, LightGreen, Pink, Gray,
+            LightGray, Cyan, Purple, Blue, Brown, DarkGreen, Red, Black
+        }
+        public enum Dyes : byte
+        {
+            InkSack, RoseRed, CactusGreen, CocoBeans, LapisLazuli, Purple, Cyan, LightGray,
+            Gray, Pink, Lime, DandelionYellow, LightBlue, Magenta, Orange, BoneMeal
+        }
+        public enum Torch : byte
+        {
+            South = 1, North, East, West, Standing
+        }
+        public enum Tracks : byte
+        {
+            EastWest, NorthSouth, RiseSouth, RiseNorth, RiseEast, RiseWest,
+            NECorner, SECorner, SWCorner, NWCorner
+        }
+        public enum Ladders : byte
+        {
+            East = 2, West, North, South
+        }
+        public enum Stairs : byte
+        {
+            South, North, West, East
+        }
+        public enum Lever : byte
+        {
+            SouthWall = 1, NorthWall, WestWall, EastWall, EWGround, NSGround,
+            IsFlipped = 8
+        }
+        public enum Door : byte
+        {
+            Northeast, Southeast, Southwest, Northwest,
+            IsOpen = 4, IsTopHalf = 8
+        }
+        public enum Button : byte
+        {
+            SouthWall = 1, NorthWall, WestWall, EastWall,
+            IsPressed = 8
+        }
+        public enum Sign : byte
+        {
+            West = 0, North = 4, East = 8, South = 0xC,
+            WallEast = 2, WallWest = 3, WallNorth = 4, WallSouth = 5
+        }
+        public enum Furnace : byte
+        {
+            East = 2, West, North, South
+        }
+        public enum Pumpkin : byte
+        {
+            East, South, West, North
+        }
+    }
+
 }

@@ -35,6 +35,10 @@ namespace MCSRedux
 		public MCSR ()
 		{
 			log = new Logger();
+            log.Write("Generating server.properties");
+            Properties.generate();
+            log.Write("Done");
+
 			while(isRunning)
 			{
 				log.Write("Testing");

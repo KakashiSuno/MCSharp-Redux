@@ -73,7 +73,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="Block\Materials.cs" />
+    <Compile Include="Materials\Materials.cs" />
     <Compile Include="Server.cs" />
     <Compile Include="MCSR.cs" />
     <Compile Include="Logger.cs" />

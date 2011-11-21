@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -48,25 +48,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bin\Debug\MCSRedux.vshost.exe" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="MCSRedux.pidb" />
-    <None Include="obj\x86\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Commands\BotCommands\" />
-    <Folder Include="Groups\" />
-    <Folder Include="Levels\" />
-    <Folder Include="LuaInterface\" />
-    <Folder Include="mapConverter\dat to lvl converter\bin\Debug\" />
-    <Folder Include="mapConverter\dat to lvl converter\bin\Release\" />
-    <Folder Include="mapConverter\dat to lvl converter\obj\Debug\" />
-    <Folder Include="mapConverter\dat to lvl converter\Properties\" />
-    <Folder Include="Meebey\" />
-    <Folder Include="obj\x86\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">

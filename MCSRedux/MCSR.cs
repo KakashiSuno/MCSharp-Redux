@@ -30,7 +30,7 @@ namespace MCSRedux
 		}
 		
 		public static bool isRunning = true;
-		Logger log;
+		public static Logger log;
 		
 		public MCSR ()
 		{

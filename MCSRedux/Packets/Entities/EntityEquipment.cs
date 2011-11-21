@@ -20,7 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace Packets.Entities
+namespace MCSRedux.Packets.Entities
 {
 	public class EntityEquipment
 	{

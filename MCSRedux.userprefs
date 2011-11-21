@@ -1,24 +1,20 @@
 ﻿<Properties>
   <AuthorInfo Name="MCSR Team" Email="day7tech@gmail.com" Copyright="MCSR Team" Company="Day7,Axxim" Trademark="" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MCSRedux/Materials/Materials.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MCSRedux/Packets/Packet.cs">
     <Files>
-      <File FileName="MCSRedux/Server.cs" Line="48" Column="18" />
-      <File FileName="MCSRedux/MCSR.cs" Line="40" Column="26" />
-      <File FileName="MCSRedux/Logger.cs" Line="71" Column="19" />
-      <File FileName="MCSRedux/Commands/CmdOp.cs" Line="8" Column="18" />
-      <File FileName="MCSRedux/Commands/Command.cs" Line="8" Column="12" />
-      <File FileName="MCSRedux/Packets/PacketID.cs" Line="72" Column="20" />
-      <File FileName="MCSRedux/Configuration/Properties.cs" Line="4" Column="19" />
-      <File FileName="MCSRedux/Materials/Materials.cs" Line="36" Column="30" />
+      <File FileName="MCSRedux/Packets/Packet.cs" Line="23" Column="11" />
+      <File FileName="MCSRedux/Entities/Player.cs" Line="20" Column="5" />
+      <File FileName="MCSRedux/NOTES.txt" Line="8" Column="47" />
+      <File FileName="MCSRedux/MCSR.cs" Line="33" Column="17" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
+        <State expanded="True" selected="True">
           <Node name="MCSRedux" expanded="True">
-            <Node name="Materials" expanded="True">
-              <Node name="Materials.cs" selected="True" />
-            </Node>
+            <Node name="Entities" expanded="True" />
+            <Node name="Packets" expanded="True" />
+            <Node name="Properties" expanded="True" />
           </Node>
         </State>
       </Pad>

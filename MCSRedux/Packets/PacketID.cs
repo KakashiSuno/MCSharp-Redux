@@ -42,7 +42,7 @@ namespace Packets
 		PlayerBlockPlace = 0x0F,
 		HoldingChange = 0x10,
 		UseBed = 0x11,
-		Animation = 0x12
+		Animation = 0x12,
 		EntityAction = 0x13,
 		NamedEntitySpawn = 0x014,
 		PickupSpawn = 0x15,

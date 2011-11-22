@@ -81,15 +81,15 @@ namespace MCSRedux
 				switch(key)
 				{
 				case "allow-flight":
-					if(!bool.TryParse(val, allowflight))
+					if(!Boolean.TryParse(val, allowflight))
 						MCSR.log.Write("WARNING: config option 'allow-flight' has invalid value. Using default");
 					break;
 				case "difficulty":
-					if(!byte.TryParse(val, difficulty))
+					if(!Byte.TryParse(val, difficulty))
 						MCSR.log.Write("WARNING: config option 'difficulty' has invalid value. Using default");
 					break;
 				case "gamemode":
-					if(!byte.TryParse(val, gamemode))
+					if(!Byte.TryParse(val, gamemode))
 						MCSR.log.Write("WARNING: config option 'gamemode' has invalid value. Using default");
 					break;
 				case "max-players":

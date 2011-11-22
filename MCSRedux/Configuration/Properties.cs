@@ -58,7 +58,108 @@ namespace MCSRedux
         public static bool spawnanimals = false;
         public static bool spawnmonsters = false;
         public static bool allownether = true;
-
+		
+		/// <summary>
+		/// Load the specified config file.
+		/// </summary>
+		/// <param name='path'>
+		/// Path to the config file.
+		/// </param>
+		public static void Load(string path)
+		{
+			StreamReader r = new StreamReader(File.OpenRead(path));
+			
+			while(!r.EndOfStream)
+			{
+				string line = r.ReadLine();
+				if(line.StartsWith("#"))
+					continue;
+				
+				string key = line.Split('=')[0].Trim();
+				string val = line.Split('=')[1].Trim();
+				
+				switch(key)
+				{
+				case "allow-flight":
+					if(!bool.TryParse(val, allowflight))
+						MCSR.log.Write("WARNING: config option 'allow-flight' has invalid value. Using default");
+					break;
+				case "difficulty":
+					if(!byte.TryParse(val, difficulty))
+						MCSR.log.Write("WARNING: config option 'difficulty' has invalid value. Using default");
+					break;
+				case "gamemode":
+					if(!byte.TryParse(val, gamemode))
+						MCSR.log.Write("WARNING: config option 'gamemode' has invalid value. Using default");
+					break;
+				case "max-players":
+					if(!Int16.TryParse(val, maxplayers))
+						MCSR.log.Write("WARNING: config option 'max-players' has invalid value. Using default");
+					break;
+				case "motd":
+					motd = val;
+					break;
+				case "pvp":
+					if(!Boolean.TryParse(val, pvp))
+						MCSR.log.Write("WARNING: config option 'pvp' has invalid value. Using default");
+					break;
+				case "view-distance":
+					if(!Byte.TryParse(val, viewdistance))
+						MCSR.log.Write("WARNING: config option 'view-distance' has invalid value. Using default");
+					break;
+				case "whitelist":
+					if(!Boolean.TryParse(val, whitelist))
+						MCSR.log.Write("WARNING: config option 'whitelist' has invalid value. Using default");
+					break;
+				case "enable-query":
+					if(!Boolean.TryParse(val, enablequery))
+						MCSR.log.Write("WARNING: config option 'enable-query' has invalid value. Using default");
+					break;
+				case "enable-rcon":
+					if(!Boolean.TryParse(val, enablercon))
+						MCSR.log.Write("WARNING: config option 'enable-rcon' has invalid value. Using default");
+					break;
+				case "online-mode":
+					if(!Boolean.TryParse(val, onlinemode))
+						MCSR.log.Write("WARNING: config option 'online-mode' has invalid value. Using default");
+					break;
+				case "server-ip":
+					if(System.Net.IPAddress.TryParse(val, null))
+						serverip = val;
+					else
+						MCSR.log.Write("WARNING: config option 'server-ip' has invalid value. Using default");
+					break;
+				case "server-port":
+					if(!UInt16.TryParse(val, serverport))
+						MCSR.log.Write("WARNING: config option 'server-port' has invalid value. Using default");
+					break;
+				case "allow-nether":
+					if(!Boolean.TryParse(val, allownether))
+						MCSR.log.Write("WARNING: config option 'allow-nether' has invalid value. Using default");
+					break;
+				case "level-name":
+					//Check string for invalid characters
+					break;
+				case "level-seed":
+					levelseed = val;
+					break;
+				case "spawn-animals":
+					if(!Boolean.TryParse(val, spawnanimals))
+						MCSR.log.Write("WARNING: config option 'spawn-animals' has invalid value. Using default");
+					break;
+				case "spawn-monsters":
+					if(!Boolean.TryParse(val, spawnmonsters))
+						MCSR.log.Write("WARNING: config option 'spawn-monsters' has invalid value. Using default");
+					break;
+				default:
+					MCSR.log.Write("ERROR: Unknown config option: '" + key + "'");
+					break;
+				}
+			}
+		}
+		/// <summary>
+		/// Generate the config file.
+		/// </summary>
         public static void generate()
         {
             StreamWriter config = new StreamWriter(File.Create(configfile));

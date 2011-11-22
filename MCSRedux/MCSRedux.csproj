@@ -93,11 +93,17 @@
     <Compile Include="Packets\Entities\SpawnPosition.cs" />
     <Compile Include="Packets\Entities\UseEntity.cs" />
     <Compile Include="Packets\Packet.cs" />
+    <Compile Include="Packets\Player\UpdateHealth.cs" />
+    <Compile Include="Packets\Player\Respawn.cs" />
+    <Compile Include="Packets\Player\PlayerPacket.cs" />
+    <Compile Include="Packets\Player\PlayerPosition.cs" />
+    <Compile Include="Packets\Player\PlayerPositionLook.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <Folder Include="Packets\General\" />
     <Folder Include="Packets\Entities\" />
+    <Folder Include="Packets\Player\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NOTES.txt" />

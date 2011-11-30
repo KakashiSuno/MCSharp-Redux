@@ -46,7 +46,7 @@ namespace MCSRedux
 				if(listen.Pending())
 				{
 					MCSR.log.Write("New connection");
-                    MCSR.players.Add(new Player(listen.AcceptTcpClient()));
+                    //MCSR.players.Add(new Player(listen.AcceptTcpClient()));
 				}
 				Thread.Sleep(100);
 			}

@@ -19,9 +19,11 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.IO;
 using System.Collections.Generic;
 
 using MCSRedux.Entities;
+using MCSRedux.Maps;
 
 namespace MCSRedux
 {
@@ -37,11 +39,23 @@ namespace MCSRedux
 		
 		//public static List<Player> players = new List<Player>();
 		
+		static Map world;
+		
+		public static Map World { get{ return world; }}
+		
 		public MCSR ()
 		{
 			log = new Logger();
             Properties.generate();
             log.Write("server.properties has been created.");
+			
+			if(Directory.Exists("world"))
+				world = Map.LoadMap(Directory.GetCurrentDirectory() + "/world");
+			else
+			{
+				world = Map.Create(Directory.GetCurrentDirectory() + "/world", "Main");
+				world.GenerateFlat();
+			}
 
 //			while(isRunning)
 //			{

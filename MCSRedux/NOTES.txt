@@ -6,3 +6,11 @@ Linux Stuff:
 	
 Socket based control API for Control Panels such as CNAS
 Config reloading during runtime where possible
+
+File Structure:
+
+root/
+	World/
+	Ranks
+	server.properties
+	MCSRedux.exe

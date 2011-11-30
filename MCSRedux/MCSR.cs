@@ -46,22 +46,29 @@ namespace MCSRedux
 		public MCSR ()
 		{
 			log = new Logger();
-            Properties.generate();
-            log.Write("server.properties has been created.");
 			
-			if(Directory.Exists("world"))
-				world = Map.LoadMap(Directory.GetCurrentDirectory() + "/world");
+			log.Write("Loading " + Properties.configfile);
+			Properties.Load(Properties.configfile);
+			
+			
+			if(!Directory.Exists("Worlds"))
+			{
+				log.Write("Creating Directory 'Worlds'");
+				Directory.CreateDirectory("Worlds");
+			}
+			
+			if(Directory.Exists("Worlds/overworld"))
+			{
+				log.Write("Loading Map: Overworld");
+				world = Map.LoadMap(Directory.GetCurrentDirectory() + "/Worlds/overworld");
+			}
 			else
 			{
-				world = Map.Create(Directory.GetCurrentDirectory() + "/world", "Main");
-				world.GenerateFlat();
+				log.Write("Creating Map: Overworld");
+				Directory.CreateDirectory("Worlds/overworld");
+				world = Map.Create(Directory.GetCurrentDirectory() + "/Worlds/overworld", "Overworld");
+				MapGenerator.GenerateFlat(world);
 			}
-
-//			while(isRunning)
-//			{
-//				log.Write("Testing");
-//				System.Threading.Thread.Sleep(1000);
-//			}
 		}
 	}
 }

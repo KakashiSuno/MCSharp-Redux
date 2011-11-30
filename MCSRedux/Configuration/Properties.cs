@@ -74,6 +74,8 @@ namespace MCSRedux
 				string line = r.ReadLine();
 				if(line.StartsWith("#"))
 					continue;
+				if(line.Length == 0)
+					continue;
 				
 				string key = line.Split('=')[0].Trim();
 				string val = line.Split('=')[1].Trim();

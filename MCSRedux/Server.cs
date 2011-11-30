@@ -21,8 +21,9 @@
 using System;
 using System.Net;
 using System.Net.Sockets;
-
 using System.Threading;
+
+using MCSRedux.Entities;
 
 namespace MCSRedux
 {
@@ -34,9 +35,8 @@ namespace MCSRedux
 		
 		public Server ()
 		{
-			endpoint = new IPEndPoint(((Properties.serverip.Length > 0) ? IPAddress.Parse(Properties.serverip) : IPAddress.Any), MCSRedux.Properties.serverport);
-			listen = new TcpListener(endpoint);
-			listen.Start();
+			IPAddress addr = ((Properties.serverip.Length > 0) ? IPAddress.Parse(Properties.serverip) : IPAddress.Any);
+			endpoint = new IPEndPoint(addr, Properties.serverport);
 		}
 		
 		void Listen()
@@ -45,7 +45,8 @@ namespace MCSRedux
 			{
 				if(listen.Pending())
 				{
-                    TcpClient cl = listen.AcceptTcpClient();
+					MCSR.log.Write("New connection");
+                    MCSR.players.Add(new Player(listen.AcceptTcpClient()));
 				}
 				Thread.Sleep(100);
 			}

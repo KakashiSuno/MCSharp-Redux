@@ -26,6 +26,18 @@ namespace MCSRedux.Packets
 	{
 		public byte ID;
 		public object[] payload;
+		
+		public static Packet ParseIncoming(byte[] data)
+		{
+			switch((PacketID)data[0])
+			{
+			case PacketID.LoginRequest:
+				General.LoginRequest tmp = new General.LoginRequest();
+				Array.Copy(data, 1, tmp.payload, 0, data.Length - 1);
+				break;
+			}
+			return null;
+		}
 	}
 }
 

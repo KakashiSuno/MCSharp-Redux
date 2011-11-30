@@ -1,5 +1,5 @@
 //  
-//  MCSR.cs
+//  Map.cs
 //  
 //  Author:
 //       MCSR Team <day7tech@gmail.com>
@@ -19,35 +19,17 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Collections.Generic;
 
-using MCSRedux.Entities;
+using Substrate;
+using Substrate.Core;
 
-namespace MCSRedux
+namespace MCSRedux.Maps
 {
-	public class MCSR
+	public class Map : Substrate.BetaWorld
 	{
-		public static void Main(string[] args)
+		public Map (string name)
 		{
-			new MCSR();
-		}
-		
-		public static bool isRunning = true;
-		public static Logger log;
-		
-		//public static List<Player> players = new List<Player>();
-		
-		public MCSR ()
-		{
-			log = new Logger();
-            Properties.generate();
-            log.Write("server.properties has been created.");
-
-//			while(isRunning)
-//			{
-//				log.Write("Testing");
-//				System.Threading.Thread.Sleep(1000);
-//			}
+			this.Level.LevelName = name;
 		}
 	}
 }

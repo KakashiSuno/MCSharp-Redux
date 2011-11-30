@@ -18,15 +18,25 @@
 // 
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+// PacketID		(byte)
+// Username		(string)	[Cient to Server; Max Length of 16]
+// Map Seed		(long)		[Server to Client]
+// Server Mode	(int)		[Server to Client; 0 for survival, 1 for creative]
+// Dimension	(byte) 		[Server to Client; -1 = Nether, 0 = Normal, 1 = End]
+// Difficulty	(byte)		[Server to Client; 0-3 for Peaceful, Easy, Normal, Hard]
+// World Height	(ubyte)		[Server to Client; Defaults to 128]
+// Max Players	(ubyte)		[Server to Client]
+
+// Total Length in bytes: 23 + length of strings
+
 using System;
 
 namespace MCSRedux.Packets.General
 {
-	public class LoginRequest
+	public class LoginRequest : Packet
 	{
-		public LoginRequest ()
-		{
-		}
+		public LoginRequest(){}
 	}
 }
 

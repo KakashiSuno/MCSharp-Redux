@@ -25,7 +25,7 @@ namespace MCSRedux
 {
 	public class Logger
 	{
-		public string[] queue = new string[Console.WindowHeight];
+		public string[] queue = new string[Console.WindowHeight-1];
 		bool newmsg = false;
 		
 		Thread writeThread;
@@ -47,7 +47,12 @@ namespace MCSRedux
 				{
 					Console.Clear();
 					foreach(string msg in queue)
-						Console.WriteLine(msg);
+					{
+						if(msg.Contains("ERROR:"))
+							Console.Error.WriteLine(msg);
+						else
+							Console.WriteLine(msg);
+					}
 					newmsg = false;
 				}
 				Thread.Sleep(50);

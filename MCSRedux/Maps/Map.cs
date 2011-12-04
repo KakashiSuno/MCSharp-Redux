@@ -26,12 +26,24 @@ namespace MCSRedux.Maps
 {
 	public class Map
 	{
-		internal BetaWorld world;
-		internal BetaChunkManager cm;
+		BetaWorld world;
+		BetaChunkManager cm;
+		PlayerManager pm;
 		
 		public string Name { get{ return world.Level.LevelName; }}
 		public string Path { get{ return world.Path; }}
 		public SpawnPoint Spawn { get{ return world.Level.Spawn; }}
+		
+		//public BetaWorld World { get{ return world; }}
+		public BetaChunkManager ChunkManager { get{ return cm; }}
+		public PlayerManager PlayerMgr { get{ return pm; }}
+		
+		#region Member functions
+		public void Save()
+		{
+			world.Save();
+		}
+		#endregion
 		
 		#region Static methods
 		public static Map LoadMap(string path)

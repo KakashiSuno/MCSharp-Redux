@@ -19,79 +19,126 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Threading;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+
+using MCSRedux.Configuration;
 
 namespace MCSRedux
 {
-	public class Logger
+	// Class made so that I don't have to mess around with too many array calcs
+	public class OverflowBuffer
 	{
-		public string[] queue = new string[Console.WindowHeight-1];
-		bool newmsg = false;
-		
-		Thread writeThread;
-		
-		public Logger ()
+		string[] array;
+		public OverflowBuffer(int len)
 		{
-			for(int i=0; i<queue.Length; i++)
-				queue[i] = "";
-			
-			writeThread = new Thread(log_update);
-			writeThread.Start();
+			array = new string[len];
 		}
-		
-		void log_update()
+		public void Add(LogType type, string str)
 		{
-			while(MCSR.isRunning)
-			{
-				if(newmsg)
-				{
-					Console.Clear();
-					foreach(string msg in queue)
-					{
-						if(msg.Contains("ERROR:"))
-							Console.Error.WriteLine(msg);
-						else
-							Console.WriteLine(msg);
-					}
-					newmsg = false;
-				}
-				Thread.Sleep(50);
+			int nextindex = GetNext();
+			if(nextindex == -1) {
+				array = new string[array.Length]; // I'll be amazed if this works
+				nextindex = 0;
 			}
+			array[nextindex] = "&" + type + str;
 		}
-		
-		public void Write(string msg)
+		int GetNext()
 		{
-			string tmp = DateTime.Now.ToString("[HH:MM:ss] ") + msg;
-			queue[GetNextAvailable()] = tmp;
-			newmsg = true;
-		}
-		
-		int GetNextAvailable()
-		{
-			for(int i=0; i<queue.Length; i++)
-			{
-				if(queue[i].Length == 0) return i;
-				if(i == queue.Length - 1)
-				{
-					CycleQueue();
+			for(int i=0; i< array.Length; i++) {
+				if(array[i] == String.Empty)
 					return i;
-				}
 			}
 			return -1;
 		}
-		void CycleQueue()
+	}
+	public enum LogType
+	{
+		Message = 0,
+		Warning = 1,
+		Error = 2
+	}
+	public class Logger
+	{
+		OverflowBuffer overflow; // If a message fails to write, it's stored here
+		
+		FileStream messageLog;	// Everything you see in the console will go through here
+		FileStream errorLog;	// Everything else goes through here
+		
+		public Logger(string mlog, string elog)
 		{
-			string tmp = "";
+			overflow = new OverflowBuffer(5); // 5 might be too low, need to experiment
 			
-			for(int i=0; i<queue.Length; i++)
-			{
-				tmp = queue[i];
-				if(i == queue.Length - 1)
-					queue[i] = "";
-				else
-					queue[i] = queue[i+1];
+			messageLog = File.Open(mlog, FileMode.Append, FileAccess.Write); 
+			errorLog = File.Open(elog, FileMode.Append, FileAccess.Write);
+		}
+		
+		/// <summary>
+		/// Writes to the log as specified by 'type'
+		/// </summary>
+		/// <param name='type'>
+		/// Determines how to handle the message
+		/// </param>
+		/// <param name='message'>
+		/// The message to pass to the logger
+		/// </param>
+		public void Write(LogType type, string message)
+		{
+			switch(type) {
+			case LogType.Message:
+				WriteMsg(message, true);
+				break;
+			case LogType.Warning:
+				WriteWerror(message, true);
+				break;
 			}
 		}
+		
+		void WriteMsg(string message, bool timestamp)
+		{
+			string tmp = ((timestamp) ? DateTime.Now.ToString("[HH:MM:ss] ") : "") + message;
+			try {
+				byte[] btmp = Encoding.ASCII.GetBytes(tmp);
+				messageLog.Write(btmp, 0, btmp.Length);
+			}
+			catch(IOException ex) {
+				overflow.Add(LogType.Message, tmp);
+				Error(ex.ToString());
+			}
+			
+			Console.WriteLine(tmp);
+		}
+		void WriteWerror(string message, bool timestamp)
+		{
+			string tmp = ((timestamp) ? DateTime.Now.ToString("[HH:MM:ss] ") : "") + "WARNING: " + message;
+			try {
+				byte[] btmp = Encoding.ASCII.GetBytes(tmp);
+				messageLog.Write(btmp, 0, btmp.Length);
+			}
+			catch(IOException ex) {
+				overflow.Add(MCSRedux.LogType.Warning, message);
+				Error(ex.ToString());
+			}
+			
+			Console.WriteLine(tmp);
+		}
+		
+		void Error(string msg)
+		{
+			string logannounce = "ERROR at time " + DateTime.Now.ToString("HH:MM:ss") + ". See " + Properties.errorlog + " for details";
+			
+			try{
+				byte[] btmp = Encoding.ASCII.GetBytes(logannounce);
+				messageLog.Write(btmp, 0, btmp.Length);
+				
+				btmp = Encoding.ASCII.GetBytes(msg);
+				errorLog.Write(btmp, 0, btmp.Length);
+			}
+			catch(Exception ex) { Console.WriteLine("Errorception"); }
+		}
+		
+		
 	}
 }
 

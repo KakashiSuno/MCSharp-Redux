@@ -77,40 +77,26 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="Entities\Player.cs" />
     <Compile Include="Materials\Materials.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Server.cs" />
     <Compile Include="MCSR.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Configuration\Properties.cs" />
     <Compile Include="Commands\CmdOp.cs" />
     <Compile Include="Commands\Command.cs" />
-    <Compile Include="Packets\PacketID.cs" />
-    <Compile Include="Packets\General\KeepAlive.cs" />
-    <Compile Include="Packets\General\LoginRequest.cs" />
-    <Compile Include="Packets\General\Handshake.cs" />
-    <Compile Include="Packets\General\ChatMessage.cs" />
-    <Compile Include="Packets\General\TimeUpdate.cs" />
-    <Compile Include="Packets\Entities\EntityEquipment.cs" />
-    <Compile Include="Packets\Entities\SpawnPosition.cs" />
-    <Compile Include="Packets\Entities\UseEntity.cs" />
-    <Compile Include="Packets\Packet.cs" />
-    <Compile Include="Packets\Player\UpdateHealth.cs" />
-    <Compile Include="Packets\Player\Respawn.cs" />
-    <Compile Include="Packets\Player\PlayerPacket.cs" />
-    <Compile Include="Packets\Player\PlayerPosition.cs" />
-    <Compile Include="Packets\Player\PlayerPositionLook.cs" />
     <Compile Include="Maps\Map.cs" />
     <Compile Include="Maps\MapGenerator.cs" />
+    <Compile Include="Network\Server.cs" />
+    <Compile Include="Network\Packets\PacketID.cs" />
+    <Compile Include="Entities\SvPlayer.cs" />
+    <Compile Include="Network\TypeHandler.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Folder Include="Packets\General\" />
-    <Folder Include="Packets\Entities\" />
-    <Folder Include="Packets\Player\" />
     <Folder Include="Substrate\" />
     <Folder Include="Maps\" />
+    <Folder Include="Network\" />
+    <Folder Include="Network\Packets\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NOTES.txt" />

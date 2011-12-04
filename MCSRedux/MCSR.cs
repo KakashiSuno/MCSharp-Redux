@@ -22,8 +22,11 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
+using MCSRedux.Configuration;
 using MCSRedux.Entities;
 using MCSRedux.Maps;
+
+using MCSRedux.Network;
 
 namespace MCSRedux
 {
@@ -45,29 +48,11 @@ namespace MCSRedux
 		
 		public MCSR ()
 		{
-			log = new Logger();
+			log = new Logger("server.log", "error.log");
 			
-			log.Write("Loading " + Properties.configfile);
-			Properties.Load(Properties.configfile);
-			
-			
-			if(!Directory.Exists("Worlds"))
+			while(isRunning)
 			{
-				log.Write("Creating Directory 'Worlds'");
-				Directory.CreateDirectory("Worlds");
-			}
-			
-			if(Directory.Exists("Worlds/overworld"))
-			{
-				log.Write("Loading Map: Overworld");
-				world = Map.LoadMap(Directory.GetCurrentDirectory() + "/Worlds/overworld");
-			}
-			else
-			{
-				log.Write("Creating Map: Overworld");
-				Directory.CreateDirectory("Worlds/overworld");
-				world = Map.Create(Directory.GetCurrentDirectory() + "/Worlds/overworld", "Overworld");
-				MapGenerator.GenerateFlat(world);
+				System.Threading.Thread.Sleep(1000);
 			}
 		}
 	}

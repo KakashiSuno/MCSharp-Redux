@@ -40,7 +40,7 @@ namespace MCSRedux.Maps
 			{
 				for(int zi = zmin; zi < zmax; zi++)
 				{
-					ChunkRef chunk = map.cm.CreateChunk(xi, zi);
+					ChunkRef chunk = map.ChunkManager.CreateChunk(xi, zi);
 					chunk.IsTerrainPopulated = true;
 					chunk.Blocks.AutoLight = false;
 					
@@ -50,10 +50,10 @@ namespace MCSRedux.Maps
 					chunk.Blocks.RebuildSkyLight();
 					
 					// Debug line
-					MCSR.log.Write(String.Format("Build Chunk {0},{1}", chunk.X, chunk.Z));
+					MCSR.log.Write(LogType.Message, String.Format("Build Chunk {0},{1}", chunk.X, chunk.Z));
 					
-					map.cm.Save();
-					map.world.Save();
+					map.ChunkManager.Save();
+					map.Save();
 				}
 			}
 		}

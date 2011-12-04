@@ -69,12 +69,16 @@ namespace MCSRedux.Network
 							new SvPlayer(cl);
 						else if(firstpacket == (byte)PacketID.ServerListPing)
 						{
-							string tmpstr = Properties.motd + "$" + 0 + "$" + Properties.maxplayers;
-							byte[] buffer = new byte[tmpstr.Length + 3];
+							string tmpstr = Properties.motd + "§" + 0 + "§" + Properties.maxplayers;
+							
+							byte[] buffer, tmp;
+							
+							tmp = TypeHandler.GetBytes(tmpstr);
+							buffer = new byte[tmp.Length + 3];
 							
 							buffer[0] = (byte)PacketID.Kick;
 							Array.Copy(TypeHandler.GetBytes((short)tmpstr.Length), 0, buffer, 1, 2);
-							Array.Copy(TypeHandler.GetBytes(tmpstr), 0, buffer, 3, tmpstr.Length);
+							Array.Copy(tmp, 0, buffer, 3, tmp.Length);
 							
 							cl.GetStream().Write(buffer, 0, buffer.Length);
 							cl.Close();

@@ -50,10 +50,8 @@ namespace MCSRedux
 		{
 			log = new Logger("server.log", "error.log");
 			
-			while(isRunning)
-			{
-				System.Threading.Thread.Sleep(1000);
-			}
+			Server sv = new Server(Properties.serverip, Properties.serverport);
+			sv.Listen();
 		}
 	}
 }

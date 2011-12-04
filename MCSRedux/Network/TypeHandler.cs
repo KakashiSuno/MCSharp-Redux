@@ -84,7 +84,7 @@ namespace MCSRedux.Network
 		// TODO: Metadata
 		#endregion
 		
-		#region ToByteArray
+		#region GetBytes
 		public static byte[] GetBytes(short s)
 		{
 			byte[] tmp = BitConverter.GetBytes(s);

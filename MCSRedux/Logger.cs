@@ -66,11 +66,17 @@ namespace MCSRedux
 		FileStream messageLog;	// Everything you see in the console will go through here
 		FileStream errorLog;	// Everything else goes through here
 		
+		const string logdir = "Logs";
+		const byte obufflen = 5;
+		
 		public Logger(string mlog, string elog)
 		{
-			overflow = new OverflowBuffer(5); // 5 might be too low, need to experiment
+			overflow = new OverflowBuffer(obufflen); // 5 might be too low, need to experiment
 			
-			messageLog = File.Open(mlog, FileMode.Append, FileAccess.Write); 
+			if(!Directory.Exists(logdir))
+				Directory.CreateDirectory(logdir);
+			
+			messageLog = File.Open(logdir + "/" + mlog, FileMode.Append, FileAccess.Write); 
 			errorLog = File.Open(elog, FileMode.Append, FileAccess.Write);
 		}
 		

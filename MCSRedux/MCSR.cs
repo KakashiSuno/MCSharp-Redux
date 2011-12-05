@@ -48,8 +48,12 @@ namespace MCSRedux
 		
 		public MCSR ()
 		{
-			log = new Logger("server.log", "error.log");
+			Properties.Load(Properties.configfile);
 			
+			string logfilename = "Logs/" + DateTime.Today.ToShortDateString().Replace("/", "-") + ".log";
+			log = new Logger(logfilename, "error.log");
+			
+			log.Write(LogType.Message, "Initializing Server");
 			Server sv = new Server(Properties.serverip, Properties.serverport);
 			sv.Listen();
 		}

@@ -56,6 +56,7 @@ namespace MCSRedux.Network
 		void _listen()
 		{
 			listen.Start();
+			MCSR.log.Write(LogType.Message, "Now listening for connections on port: " + endpoint.Port);
 			
 			while(MCSR.isRunning)
 			{

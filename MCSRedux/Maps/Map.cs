@@ -38,6 +38,8 @@ namespace MCSRedux.Maps
 		public BetaChunkManager ChunkManager { get{ return cm; }}
 		public PlayerManager PlayerMgr { get{ return pm; }}
 		
+		public long seed = MCSRedux.Configuration.Properties.levelseed.GetHashCode();
+		
 		#region Member functions
 		public void Save()
 		{

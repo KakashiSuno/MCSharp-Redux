@@ -48,7 +48,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="Substrate, Version=1.0.4350.39778, Culture=neutral, PublicKeyToken=null">
+    <Reference Include="Substrate, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Substrate\Substrate.dll</HintPath>
     </Reference>
@@ -90,6 +90,8 @@
     <Compile Include="Network\Packets\PacketID.cs" />
     <Compile Include="Entities\SvPlayer.cs" />
     <Compile Include="Network\TypeHandler.cs" />
+    <Compile Include="Entities\McClient.cs" />
+    <Compile Include="Entities\Player.Network.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -40,7 +40,7 @@ namespace MCSRedux
 		public static bool isRunning = true;
 		public static Logger log;
 		
-		//public static List<Player> players = new List<Player>();
+		public static List<SvPlayer> players = new List<SvPlayer>();
 		
 		static Map world;
 		
@@ -50,12 +50,14 @@ namespace MCSRedux
 		{
 			Properties.Load(Properties.configfile);
 			
-			string logfilename = "Logs/" + DateTime.Today.ToShortDateString().Replace("/", "-") + ".log";
+			string logfilename = DateTime.Today.ToShortDateString().Replace("/", "-") + ".log";
 			log = new Logger(logfilename, "error.log");
 			
 			log.Write(LogType.Message, "Initializing Server");
 			Server sv = new Server(Properties.serverip, Properties.serverport);
 			sv.Listen();
+			
+			while(isRunning) { System.Threading.Thread.Sleep(100); }
 		}
 	}
 }

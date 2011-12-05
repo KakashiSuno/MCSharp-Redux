@@ -97,6 +97,21 @@ namespace MCSRedux.Network
 			byte[] tmp = Encoding.BigEndianUnicode.GetBytes(s);
 			return tmp;
 		}
+		public static byte[] GetBytes(int i)
+		{
+			byte[] tmp = BitConverter.GetBytes(i);
+			if(BitConverter.IsLittleEndian)
+				Array.Reverse(tmp);
+			return tmp;
+		}
+		public static byte[] GetBytes(long l)
+		{
+			byte[] tmp = BitConverter.GetBytes(l);
+			if(BitConverter.IsLittleEndian)
+				Array.Reverse(tmp);
+			return tmp;
+		}
+		
 		#endregion
 	}
 }

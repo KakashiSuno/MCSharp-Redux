@@ -21,11 +21,9 @@
 using System;
 using System.Net;
 using System.Net.Sockets;
-using System.Threading;
 
 using MCSRedux.Configuration;
 using MCSRedux.Entities;
-using MCSRedux.Network.Packets;
 
 namespace MCSRedux.Network
 {
@@ -34,60 +32,36 @@ namespace MCSRedux.Network
 		TcpListener listen;
 		IPEndPoint endpoint;
 		
-		Thread listenThread;
-		
 		public Server(string ip, int port)
 		{
-			IPAddress tmp;
-			if(!IPAddress.TryParse(ip, out tmp))
-				tmp = IPAddress.Any;
-			
-			endpoint = new IPEndPoint(tmp, port);
+			IPAddress ipaddr;
+			IPAddress.TryParse(Properties.serverip, out ipaddr);
+			endpoint = new IPEndPoint((ipaddr != null) ? ipaddr : IPAddress.Any, Properties.serverport);
 			
 			listen = new TcpListener(endpoint);
 		}
 		
 		public void Listen()
 		{
-			listenThread = new Thread(_listen);
-			listenThread.Start();
+			Listen(0);
+		}
+		public void Listen(int backlog)
+		{
+			listen.Start(backlog);
+			
+			listen.BeginAcceptTcpClient(new AsyncCallback(AcceptConnection), this);
 		}
 		
-		void _listen()
+		void AcceptConnection(IAsyncResult result)
 		{
-			listen.Start();
-			MCSR.log.Write(LogType.Message, "Now listening for connections on port: " + endpoint.Port);
+			TcpClient cl = listen.EndAcceptTcpClient(result);
 			
-			while(MCSR.isRunning)
+			if(cl != null)
 			{
-				if(listen.Pending())
-				{
-					TcpClient cl = listen.AcceptTcpClient();
-					if(cl != null)
-					{
-						byte firstpacket = TypeHandler.ReadByte(cl.GetStream());
-						if(firstpacket == (byte)PacketID.Handshake)
-							new SvPlayer(cl);
-						else if(firstpacket == (byte)PacketID.ServerListPing)
-						{
-							string tmpstr = Properties.motd + "§" + 0 + "§" + Properties.maxplayers;
-							
-							byte[] buffer, tmp;
-							
-							tmp = TypeHandler.GetBytes(tmpstr);
-							buffer = new byte[tmp.Length + 3];
-							
-							buffer[0] = (byte)PacketID.Kick;
-							Array.Copy(TypeHandler.GetBytes((short)tmpstr.Length), 0, buffer, 1, 2);
-							Array.Copy(tmp, 0, buffer, 3, tmp.Length);
-							
-							cl.GetStream().Write(buffer, 0, buffer.Length);
-							cl.Close();
-						}
-					}
-				}
-				Thread.Sleep(100);
+				new McClient(cl);
 			}
+			
+			listen.BeginAcceptTcpClient(new AsyncCallback(AcceptConnection), result.AsyncState);
 		}
 	}
 }

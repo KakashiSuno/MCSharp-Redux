@@ -6,6 +6,8 @@ using System.Text;
 using System.Net;
 using System.Net.Sockets;
 
+using System.Threading;
+
 using Substrate;
 
 using MCSRedux.Maps;
@@ -14,21 +16,35 @@ using MCSRedux.Network.Packets;
 
 namespace MCSRedux.Entities
 {
-    class SvPlayer : Substrate.Player
+    public partial class SvPlayer : Substrate.Player
     {
-		TcpClient client;
-		string ip;
+		McClient client;
 		
-		byte[] buffer = new byte[19];
+		int id;		
+		public string IP { get{ return client.ip; }}
 		
-		public SvPlayer(TcpClient cl)
+		Thread receiveThread;
+		
+		public SvPlayer(McClient cl)
 		{
 			client = cl;
-			ip = client.Client.RemoteEndPoint.ToString().Split(':')[0];
-			MCSR.log.Write(LogType.Message, "Player connection: " + ip);
+			MCSR.log.Write(LogType.Message, "Player connection: " + IP);
 			
-			string s = TypeHandler.ReadString(client.GetStream());
-			MCSR.log.Write(LogType.Message, "Player Identified as: " + s);
+			this.Name = TypeHandler.ReadString(client.GetStream());
+			MCSR.log.Write(LogType.Message, IP + " identified as: " + Name);
+			
+			byte[] tmp = new byte[5];
+			tmp[0] = (byte)PacketID.Handshake;
+			Array.Copy(TypeHandler.GetBytes((short)1), 0, tmp, 1, 2);
+			Array.Copy(TypeHandler.GetBytes("-"), 0, tmp, 3, 2);
+			
+			receiveThread = new Thread(Receive);
+			receiveThread.Start();
+		}
+		
+		public void Kick(string msg)
+		{
+			
 		}
     }
 }

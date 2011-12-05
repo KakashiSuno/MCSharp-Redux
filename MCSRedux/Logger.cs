@@ -76,6 +76,11 @@ namespace MCSRedux
 			if(!Directory.Exists(logdir))
 				Directory.CreateDirectory(logdir);
 			
+			if(!File.Exists(logdir + "/" + mlog))
+				File.Create(logdir + "/" + mlog);
+			if(!File.Exists(elog))
+				File.Create(elog);
+			
 			messageLog = File.Open(logdir + "/" + mlog, FileMode.Append, FileAccess.Write); 
 			errorLog = File.Open(elog, FileMode.Append, FileAccess.Write);
 		}

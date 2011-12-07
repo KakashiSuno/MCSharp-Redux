@@ -21,6 +21,9 @@
 using System;
 
 using Substrate;
+using Substrate.Data;
+
+using Ionic.Zlib;
 
 namespace MCSRedux.Maps
 {
@@ -44,6 +47,25 @@ namespace MCSRedux.Maps
 		public void Save()
 		{
 			world.Save();
+		}
+		public byte[] GetCompressedData(int x, int y, int z, int sx, int sy, int sz)
+		{
+			Chunk spawnchunk = cm.GetChunk(x, z);
+			byte[] data = new byte[sx * sy * sz];
+			
+			for(int lx=x; lx < sx; lx++)
+			{
+				for(int lz=z; lz < sz; lz++)
+				{
+					for(int ly=y; ly < sy; ly++)
+					{
+						// x + z * width + y * width * height;
+						data[x + z * sx + y * sz * sz] = (byte)spawnchunk.Blocks.GetBlock(lx, ly, lz).ID;
+					}
+				}
+			}
+			
+			return DeflateStream.CompressBuffer(data);
 		}
 		#endregion
 		

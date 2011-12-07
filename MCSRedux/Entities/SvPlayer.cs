@@ -38,6 +38,8 @@ namespace MCSRedux.Entities
 			Array.Copy(TypeHandler.GetBytes((short)1), 0, tmp, 1, 2);
 			Array.Copy(TypeHandler.GetBytes("-"), 0, tmp, 3, 2);
 			
+			SendMap(MCSR.World);
+			
 			receiveThread = new Thread(Receive);
 			receiveThread.Start();
 		}

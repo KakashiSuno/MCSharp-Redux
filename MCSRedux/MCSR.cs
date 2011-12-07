@@ -53,6 +53,19 @@ namespace MCSRedux
 			string logfilename = DateTime.Today.ToShortDateString().Replace("/", "-") + ".log";
 			log = new Logger(logfilename, "error.log");
 			
+			if(!Directory.Exists("Worlds"))
+				Directory.CreateDirectory("Worlds");
+			
+			if(Directory.Exists("Worlds/overworld"))
+			{
+				world = Map.LoadMap(Directory.GetCurrentDirectory() + "/Worlds/overworld");
+			}
+			else
+			{
+				world = Map.Create(Directory.GetCurrentDirectory() + "/Worlds/overworld", "Overworld");
+				MapGenerator.GenerateFlat(world);
+			}
+			
 			log.Write(LogType.Message, "Initializing Server");
 			Server sv = new Server(Properties.serverip, Properties.serverport);
 			sv.Listen();

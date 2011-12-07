@@ -1,18 +1,16 @@
 ﻿<Properties>
   <AuthorInfo Name="MCSR Team" Email="day7tech@gmail.com" Copyright="MCSR Team" Company="Day7,Axxim" Trademark="" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MCSRedux/Network/TypeHandler.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MCSRedux/MCSR.cs">
     <Files>
-      <File FileName="MCSRedux/Maps/Map.cs" Line="15" Column="67" />
-      <File FileName="MCSRedux/MCSR.cs" Line="51" Column="48" />
-      <File FileName="MCSRedux/NOTES.txt" Line="15" Column="19" />
-      <File FileName="MCSRedux/Network/TypeHandler.cs" Line="67" Column="49" />
-      <File FileName="MCSRedux/Network/Server.cs" Line="79" Column="55" />
-      <File FileName="MCSRedux/Entities/SvPlayer.cs" Line="31" Column="36" />
-      <File FileName="MCSRedux/Configuration/Properties.cs" Line="158" Column="37" />
-      <File FileName="MCSRedux/Logger.cs" Line="94" Column="11" />
-      <File FileName="MCSRedux/Maps/MapGenerator.cs" Line="53" Column="94" />
-      <File FileName="MCSRedux/LICENSE.txt" Line="1" Column="1" />
+      <File FileName="MCSRedux/Entities/SvPlayer.cs" Line="41" Column="24" />
+      <File FileName="MCSRedux/Entities/Player.Network.cs" Line="82" Column="29" />
+      <File FileName="MCSRedux/Entities/McClient.cs" Line="50" Column="5" />
+      <File FileName="MCSRedux/MCSR.cs" Line="67" Column="5" />
+      <File FileName="MCSRedux/Maps/Map.cs" Line="63" Column="88" />
+      <File FileName="MCSRedux/Logger.cs" Line="85" Column="19" />
+      <File FileName="MCSRedux/Network/Server.cs" Line="56" Column="4" />
+      <File FileName="MCSRedux/Network/TypeHandler.cs" Line="126" Column="15" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -21,9 +19,9 @@
             <Node name="Configuration" expanded="True" />
             <Node name="Entities" expanded="True" />
             <Node name="Maps" expanded="True" />
-            <Node name="Network" expanded="True">
-              <Node name="TypeHandler.cs" selected="True" />
-            </Node>
+            <Node name="Network" expanded="True" />
+            <Node name="Substrate" expanded="True" />
+            <Node name="MCSR.cs" selected="True" />
           </Node>
         </State>
       </Pad>

@@ -104,7 +104,6 @@
     <None Include="NOTES.txt" />
     <None Include="LICENSE.txt" />
     <None Include="Substrate-LICENSE.txt" />
-    <None Include="Substrate\Ionic.Zlib.dll" />
     <None Include="Substrate\Substrate.dll" />
   </ItemGroup>
 </Project>

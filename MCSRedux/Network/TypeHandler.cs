@@ -111,6 +111,20 @@ namespace MCSRedux.Network
 				Array.Reverse(tmp);
 			return tmp;
 		}
+		public static byte[] GetBytes(double d)
+		{
+			byte[] tmp = BitConverter.GetBytes(d);
+			if(BitConverter.IsLittleEndian)
+				Array.Reverse(tmp);
+			return tmp;
+		}
+		public static byte[] GetBytes(float f)
+		{
+			byte[] tmp = BitConverter.GetBytes(f);
+			if(BitConverter.IsLittleEndian)
+				Array.Reverse(tmp);
+			return tmp;
+		}
 		
 		#endregion
 	}
